@@ -56,4 +56,9 @@ public class BossColorStatus : MonoBehaviour {
         }
     }
 
+    public void ChangeSpriteColor(Dictionary<string, Sprite> update)
+    {
+        spriteColor = update;
+    }
+
 }

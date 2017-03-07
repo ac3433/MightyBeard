@@ -6,6 +6,8 @@ public class Projectile : MonoBehaviour {
 
     [SerializeField]
     private float speed = 2f;
+    [SerializeField]
+    private float damge = 25f;
 
     private Rigidbody2D rb;
     private PlayerProjectile pp;
@@ -27,6 +29,11 @@ public class Projectile : MonoBehaviour {
     {
         if (other.gameObject.tag.Equals("Boss") || other.gameObject.tag.Equals("Wall"))
         {
+            if(other.gameObject.tag.Equals("Boss"))
+            {
+                BossHitState bhs = other.gameObject.GetComponent<BossHitState>();
+                bhs.decreaseHealth(damge);
+            }
             pp.deactiveObject(this.gameObject);
             this.transform.position = transform.parent.transform.position;
 
