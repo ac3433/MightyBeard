@@ -13,11 +13,9 @@ public class BossSound : MonoBehaviour {
     private Dictionary<string, Sprite> ColorSprite;
     private SpriteRenderer sprite;
 
-    public Transform soundSpawnLoc;
-
     public float minRate;
     public float maxRate;
-
+    public GameObject sound;
     private BossColorStatus color;
     private float timer;
 
@@ -30,10 +28,14 @@ public class BossSound : MonoBehaviour {
         {
             ColorSprite.Add(sc.name, sc.sprite);
         }
+
+        timer = Time.time + 10f;
     }
 	
 
 	void Update () {
+
+        
 
         if (Time.time > timer)
         {
@@ -44,6 +46,13 @@ public class BossSound : MonoBehaviour {
 
     void Produce()
     {
+        Sound s = sound.GetComponent<Sound>();
+        SpriteRenderer sr = sound.GetComponent<SpriteRenderer>();
+        sound.transform.position = this.gameObject.transform.position;
+        string c = color.color;
 
+        s.color = c;
+        sr.sprite = ColorSprite[c];
+        sound.SetActive(true);
     }
 }
