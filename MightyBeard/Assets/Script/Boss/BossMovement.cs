@@ -17,17 +17,38 @@ public class BossMovement : MonoBehaviour {
 
     private BossColorStatus color;
 
+    private Rigidbody2D rb;
+
+    private float timer;
+
+    private float playerOldPosX;
+
     void Start()
     {
         target = GameObject.FindGameObjectWithTag("Player");
         color = GetComponent<BossColorStatus>();
+        rb = GetComponent<Rigidbody2D>();
     }
 	
 	void Update () {
-	    if(string.IsNullOrEmpty(color.color))
+
+        Move();
+
+        if (!string.IsNullOrEmpty(color.color))
         {
-
+            if(Time.time > timer)
+            {
+                timer = Time.time + movementRate;
+                playerOldPosX = target.transform.position.x;
+            }
         }
+       
+    }
 
-	}
+    private void Move()
+    {
+        Debug.Log(playerOldPosX);
+        Vector2 dest = new Vector2(playerOldPosX, rb.position.y);
+        rb.MovePosition(dest + Vector2.right  * speed * Time.deltaTime);
+    }
 }
