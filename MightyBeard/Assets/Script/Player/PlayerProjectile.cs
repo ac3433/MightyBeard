@@ -16,6 +16,7 @@ public class PlayerProjectile : MonoBehaviour
     [SerializeField]
     private Transform bulletSpawnArea;
 
+
     private Dictionary<string, Sprite> ColorSprite;
 
     private PlayerColorChange playerColor;

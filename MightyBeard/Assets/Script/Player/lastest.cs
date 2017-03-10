@@ -12,10 +12,13 @@ public class lastest : MonoBehaviour {
 	//private SpriteRenderer sR;
 	//[SerializeField] Renderer rend;
 
-	public Material s0;
-	public Material s1;
-	public Material s2;
-	public Material s3;
+	[SerializeField] Material s0;
+	[SerializeField] Material s1;
+	[SerializeField] Material s2;
+	[SerializeField] Material s3;
+
+	//private ParticleSystem ps;
+
 	// Use this for initialization
 	void Start () {
 
@@ -25,6 +28,7 @@ public class lastest : MonoBehaviour {
 
 		//rend = GetComponent<Renderer> ();
 
+		//ps = GetComponent<ParticleSystem> ();
 	}
 	
 	// Update is called once per frame
@@ -34,6 +38,8 @@ public class lastest : MonoBehaviour {
 
 			StopCoroutine("ShootDamnLaser");
 			StartCoroutine ("ShootDamnLaser");
+
+			//ps.Play ();
 		}
 
 		if(Input.GetKey(KeyCode.Alpha1))
@@ -55,8 +61,10 @@ public class lastest : MonoBehaviour {
 		{
 			laser.material = s3;
 		}
+			
 	
 	}
+
 
 	IEnumerator ShootDamnLaser()
 	{
