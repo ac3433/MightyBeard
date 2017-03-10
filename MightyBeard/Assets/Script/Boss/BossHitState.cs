@@ -2,9 +2,11 @@
 using System.Collections;
 using System;
 using System.Collections.Generic;
+using DG.Tweening;
 
 public class BossHitState : MonoBehaviour {
 
+	Tween shake;
     public float health = 100f;
 
     [Serializable]
@@ -58,4 +60,14 @@ public class BossHitState : MonoBehaviour {
     {
         health -= num;
     }
+
+	void OnCollisionHit2D (Collision2D col)
+	{
+		if (shake != null && shake.IsPlaying ()) {
+
+			shake.Complete ();
+
+		}
+		shake = transform.DOShakePosition (0.5f);
+	}
 }
