@@ -7,6 +7,7 @@ using DG.Tweening;
 public class BossHitState : MonoBehaviour {
 
 	Tween shake;
+	Tween ScreenShakeTween;
     public float health = 100f;
 
     [Serializable]
@@ -61,13 +62,26 @@ public class BossHitState : MonoBehaviour {
         health -= num;
     }
 
-	void OnCollisionHit2D (Collision2D col)
+	void OnCollisionEnter2D (Collision2D col)
 	{
-		if (shake != null && shake.IsPlaying ()) {
 
-			shake.Complete ();
+		if (col.collider.tag == "Bullet") {
+			if (shake != null && shake.IsPlaying ()) {
+
+				shake.Complete ();
+
+			}
+			shake = transform.DOShakePosition (1f);
+
+
+			if (ScreenShakeTween != null && ScreenShakeTween.IsPlaying ()) {
+
+				ScreenShakeTween.Complete ();
+
+			}
+			ScreenShakeTween = Camera.main.transform.DOShakePosition (0.1f);
+
 
 		}
-		shake = transform.DOShakePosition (0.5f);
 	}
 }

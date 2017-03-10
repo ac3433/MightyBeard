@@ -6,7 +6,7 @@ using System.Collections.Generic;
 [RequireComponent(typeof(PlayerColorChange))]
 public class PlayerProjectile : MonoBehaviour
 {
-
+	
     [Serializable]
     public struct SpriteColors { public string name; public Sprite sprite; }
 
