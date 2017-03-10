@@ -29,18 +29,21 @@ public class PlayerStatus : MonoBehaviour {
     }
 
 	// for screen flash but can't find the boss weapon
-	/*void OnCollisionEnter2D (Collision2D col){
+	/*
+	void OnCollisionEnter2D (Collision2D col){
 
-		//if (col.collider.tag == "Dandruff") {
+		if (col.collider.tag == "Dandruff") {
 
-			if ( flashseq != null && flashseq.IsPlaying ()) {
+		if (flashseq != null && flashseq.IsPlaying ()) {
 
-				flashseq.Complete ();
-			}
+			flashseq.Complete ();
+		}
 
-			flashseq = DOTween.Sequence ().Append (Camera.main.DOColor (Color.white, 0.1f)).Append (Camera.main.DOColor (defaultCamColor, 0.1f));
+		flashseq = DOTween.Sequence ().Append (Camera.main.DOColor (Color.white, 0.1f)).Append (Camera.main.DOColor (defaultCamColor, 0.1f));
 
-		//}*/
-	
+		}
+
+	}
+	*/
 
 }
