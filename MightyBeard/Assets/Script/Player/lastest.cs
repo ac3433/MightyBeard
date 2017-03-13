@@ -6,7 +6,7 @@ public class lastest : MonoBehaviour {
 	//laser
 	RaycastHit2D hit;
 	LineRenderer laser;
-
+	[SerializeField] AudioSource shotLaser;
 	//sprites
 	//PlayerColorChange colorS;
 	//private SpriteRenderer sR;
@@ -38,7 +38,7 @@ public class lastest : MonoBehaviour {
 
 			StopCoroutine("ShootDamnLaser");
 			StartCoroutine ("ShootDamnLaser");
-
+			shotLaser.Play ();
 			//ps.Play ();
 		}
 
