@@ -34,7 +34,7 @@ public class temp_city_destruct : MonoBehaviour {
 				flashseq.Complete ();
 			}
 
-			flashseq = DOTween.Sequence ().Append (Camera.main.DOColor (Color.red, 0.1f)).Append (Camera.main.DOColor (defaultCamColor, 0.1f));
+			flashseq = DOTween.Sequence ().Append (Camera.main.DOColor (Color.magenta, 0.1f)).Append (Camera.main.DOColor (defaultCamColor, 0.1f));
 
 		}
 
