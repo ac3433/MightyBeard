@@ -11,6 +11,8 @@ public class player_gun : MonoBehaviour {
 	Color colorB = Color.blue;
 	Color colory = Color.yellow;
 	private SpriteRenderer sR;
+	[SerializeField] AudioSource cannon;
+
 	// Use this for initialization
 	void Start () {
 
@@ -24,6 +26,7 @@ public class player_gun : MonoBehaviour {
 
 		if (Input.GetButton("Fire1"))
 		{
+			cannon.Play ();
 			if ( gun != null && gun.IsPlaying ()) {
 
 				gun.Complete ();

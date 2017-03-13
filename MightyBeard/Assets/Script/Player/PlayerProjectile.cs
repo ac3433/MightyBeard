@@ -87,5 +87,5 @@ public class PlayerProjectile : MonoBehaviour
             activeBullet.Remove(obj);
         }
     }
-
+		
 }

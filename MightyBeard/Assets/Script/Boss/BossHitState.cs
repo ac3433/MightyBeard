@@ -8,7 +8,11 @@ public class BossHitState : MonoBehaviour {
 
 	Tween shake;
 	Tween ScreenShakeTween;
+	[SerializeField] AudioSource gotHit;
+
     public float health = 100f;
+
+	public ParticleSystem hairps;
 
     [Serializable]
     public struct Short { public string name; public Sprite sprite; }
@@ -27,6 +31,8 @@ public class BossHitState : MonoBehaviour {
     private BossColorStatus bcc;
 
 	void Start () {
+
+		//hairps = GetComponent<ParticleSystem> ();
         shortFace = new Dictionary<string, Sprite>();
         medFace = new Dictionary<string, Sprite>();
         bcc = GetComponent<BossColorStatus>();
@@ -66,6 +72,10 @@ public class BossHitState : MonoBehaviour {
 	{
 
 		if (col.collider.tag == "Bullet") {
+
+			hairps.Play ();
+			gotHit.Play ();
+
 			if (shake != null && shake.IsPlaying ()) {
 
 				shake.Complete ();

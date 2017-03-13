@@ -4,15 +4,15 @@ using DG.Tweening;
 
 public class PlayerStatus : MonoBehaviour {
 
-	//Sequence flashseq;
-	//Color defaultCamColor;
+	Sequence flashseq;
+	Color defaultCamColor;
 
     [SerializeField]
     private float health = 100f;
 
 	void Start(){
 
-		//defaultCamColor = Camera.main.backgroundColor;
+		defaultCamColor = Camera.main.backgroundColor;
 
 	}
 	// Update is called once per frame
@@ -29,10 +29,10 @@ public class PlayerStatus : MonoBehaviour {
     }
 
 	// for screen flash but can't find the boss weapon
-	/*
+
 	void OnCollisionEnter2D (Collision2D col){
 
-		if (col.collider.tag == "Dandruff") {
+		if (col.gameObject.tag == "Dandruff") {
 
 		if (flashseq != null && flashseq.IsPlaying ()) {
 
@@ -44,6 +44,6 @@ public class PlayerStatus : MonoBehaviour {
 		}
 
 	}
-	*/
+
 
 }
