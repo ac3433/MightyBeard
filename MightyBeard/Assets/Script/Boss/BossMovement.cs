@@ -34,21 +34,21 @@ public class BossMovement : MonoBehaviour {
 
         Move();
 
-        if (!string.IsNullOrEmpty(color.color))
+        if(Time.time > timer)
         {
-            if(Time.time > timer)
-            {
-                timer = Time.time + movementRate;
-                playerOldPosX = target.transform.position.x;
-            }
+            timer = Time.time + movementRate;
+            playerOldPosX = target.transform.position.x;
         }
+        
        
     }
 
     private void Move()
     {
-        Debug.Log(playerOldPosX);
-        Vector2 dest = new Vector2(playerOldPosX, rb.position.y);
-        rb.MovePosition(dest + Vector2.right  * speed * Time.deltaTime);
+        Vector2 dest = new Vector2(playerOldPosX, transform.position.y);
+        transform.position = Vector2.MoveTowards(rb.position, dest, speed * Time.deltaTime);
+
+        
+
     }
 }

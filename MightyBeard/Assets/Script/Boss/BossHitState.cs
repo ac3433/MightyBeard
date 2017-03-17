@@ -18,13 +18,17 @@ public class BossHitState : MonoBehaviour {
     public struct Short { public string name; public Sprite sprite; }
     [Serializable]
     public struct Med { public string name; public Sprite sprite; }
+    [Serializable]
+    public struct None { public string name; public Sprite sprite; }
 
     public Short[] s;
     public Med[] m;
+    public None[] n;
 
 
     private Dictionary<string, Sprite> shortFace;
     private Dictionary<string, Sprite> medFace;
+    private Dictionary<string, Sprite> noneFace;
 
     bool updates = false;
 
@@ -35,6 +39,7 @@ public class BossHitState : MonoBehaviour {
 		//hairps = GetComponent<ParticleSystem> ();
         shortFace = new Dictionary<string, Sprite>();
         medFace = new Dictionary<string, Sprite>();
+        noneFace = new Dictionary<string, Sprite>();
         bcc = GetComponent<BossColorStatus>();
 
         foreach(Short st in s)
@@ -46,19 +51,27 @@ public class BossHitState : MonoBehaviour {
         {
             medFace.Add(mt.name, mt.sprite);
         }
-	}
+
+        foreach (None nt in n)
+        {
+            noneFace.Add(nt.name, nt.sprite);
+        }
+    }
 	
 	// Update is called once per frame
 	void Update () {
 
-	    if(health < 25)
+        if (health < 25)
         {
-            bcc.ChangeSpriteColor(shortFace);
+            bcc.ChangeSpriteColor(noneFace);
         }
         else if (health < 50)
         {
-            bcc.ChangeSpriteColor(medFace);
+            bcc.ChangeSpriteColor(shortFace);
         }
+        else if (health < 75)
+            bcc.ChangeSpriteColor(medFace);
+
 
 	}
 
