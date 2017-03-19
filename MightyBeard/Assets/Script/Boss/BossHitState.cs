@@ -3,6 +3,7 @@ using System.Collections;
 using System;
 using System.Collections.Generic;
 using DG.Tweening;
+using UnityEngine.UI;
 
 public class BossHitState : MonoBehaviour {
 
@@ -49,6 +50,8 @@ public class BossHitState : MonoBehaviour {
     bool updates = false;
 
     private BossColorStatus bcc;
+
+    public Image imageHealth;
 
 	void Start () {
 
@@ -116,18 +119,24 @@ public class BossHitState : MonoBehaviour {
 
         }
 
-
 	}
 
 
     public void decreaseHealth(float num)
     {
-        if(dm.getDarkState())
+        if (dm.getDarkState())
         {
             darkCheck -= num;
+            if (darkCheck > darkThreshold)
+                darkCheck = darkThreshold;
         }
         else
+        {
             health -= num;
+            if (health > 100)
+                health = 100;
+            imageHealth.fillAmount = (health * .01f);
+        }
     }
 
 	void OnCollisionEnter2D (Collision2D col)
