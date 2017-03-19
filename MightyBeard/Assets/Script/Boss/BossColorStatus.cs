@@ -22,6 +22,7 @@ public class BossColorStatus : MonoBehaviour {
     private SpriteRenderer sr;
     private float timer;
 
+    public DarkMechanic dm;
 
     void Start () {
 
@@ -40,10 +41,17 @@ public class BossColorStatus : MonoBehaviour {
         //if (string.IsNullOrEmpty(color))
         //    return;
 
+        if(dm.getDarkState())
+        {
+            color = sprites[4].name;
+            ChangeColor(color);
+            return;
+        }
+
         if(Time.time > timer)
         {
             timer = Time.time + UnityEngine.Random.Range(minRate, maxRate);
-            color = sprites[UnityEngine.Random.Range(0, sprites.Length - 1)].name;
+            color = sprites[UnityEngine.Random.Range(0, sprites.Length - 2)].name;
             ChangeColor(color);
         }
 	}

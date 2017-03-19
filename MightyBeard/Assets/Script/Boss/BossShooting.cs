@@ -10,9 +10,12 @@ public class BossShooting : MonoBehaviour {
     public float maxRate;
 
     public Transform spawnLoc;
+    public Transform spawnLoc2;
     public GameObject bulletList;
     private List<GameObject> inactiveBullets;
     private List<GameObject> activeBullets;
+
+    private GameObject player;
 
     void Start () {
 
@@ -24,6 +27,8 @@ public class BossShooting : MonoBehaviour {
             inactiveBullets.Add(t.gameObject);
         }
         timer = Time.time + minRate;
+
+        player = GameObject.FindGameObjectWithTag("Player");
         
 	}
 	
@@ -35,6 +40,17 @@ public class BossShooting : MonoBehaviour {
             timer = Time.time + UnityEngine.Random.Range(minRate, maxRate);
             Shoot();
         }
+
+        if(GetComponent<BossHitState>().health < 75)
+        {
+            minRate = 0;
+            maxRate = 3;
+        }
+        else if(GetComponent<BossHitState>().health < 35)
+        {
+            maxRate = 2;
+        }
+
     }
 
     void Shoot()
@@ -46,7 +62,22 @@ public class BossShooting : MonoBehaviour {
 
             activeBullets.Add(obj);
             inactiveBullets.RemoveAt(0);
+
+            BossBullet bb = obj.GetComponent<BossBullet>();
+            Vector3 target = player.transform.position;
+            bb.SetDirection(target);
+
             obj.SetActive(true);
+
+            GameObject obj1 = inactiveBullets[0];
+            obj1.transform.position = spawnLoc2.transform.position;
+
+            activeBullets.Add(obj1);
+            inactiveBullets.RemoveAt(0);
+
+            bb = obj1.GetComponent<BossBullet>();
+            bb.SetDirection(target);
+            obj1.SetActive(true);
         }
     }
 

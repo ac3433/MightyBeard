@@ -15,6 +15,8 @@ public class PlayerProjectile : MonoBehaviour
     private float fireRate = 2f;
     [SerializeField]
     private Transform bulletSpawnArea;
+    [SerializeField]
+    private Transform bulletSpawnArea2;
 
 
     private Dictionary<string, Sprite> ColorSprite;
@@ -77,6 +79,15 @@ public class PlayerProjectile : MonoBehaviour
         activeBullet.Add(obj);
         inactiveBullet.RemoveAt(0);
         obj.SetActive(true);
+
+        GameObject obj1 = inactiveBullet[0];
+
+        obj1.transform.position = bulletSpawnArea2.position;
+        obj1.GetComponent<SpriteRenderer>().sprite = ColorSprite[playerColor.GetColor()];
+        obj1.GetComponent<Projectile>().Color = playerColor.GetColor();
+        activeBullet.Add(obj1);
+        inactiveBullet.RemoveAt(0);
+        obj1.SetActive(true);
     }
 
     public void deactiveObject(GameObject obj)

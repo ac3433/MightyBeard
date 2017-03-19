@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Sound : MonoBehaviour {
+public class SoundP : MonoBehaviour {
 
     [SerializeField]
-    private float damage = 15f;
+    private float restore = 10f;
 
     [SerializeField]
     private float expandSpeed = 2f;
@@ -20,33 +20,23 @@ public class Sound : MonoBehaviour {
     //sooo many redundant code!! I HATE THIS, but too tired to think.
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.gameObject.tag.Equals("Player"))
+        if (other.gameObject.tag.Equals("Boss"))
         {
-            PlayerStatus ps = other.GetComponent<PlayerStatus>();
+            BossHitState ps = other.GetComponent<BossHitState>();
 
-            ps.decreaseHealth(damage);
+            ps.decreaseHealth(-restore);
 
             transform.localPosition = Vector3.zero;
             transform.localScale = new Vector3(1, 1, 1);
             gameObject.SetActive(false);
         }
 
-        if(other.gameObject.tag.Equals("SpecialWall"))
+        if (other.gameObject.tag.Equals("SpecialWall"))
         {
             transform.localPosition = Vector3.zero;
             transform.localScale = new Vector3(1, 1, 1);
             gameObject.SetActive(false);
         }
 
-        if(other.gameObject.tag.Equals("Sound"))
-        {
-            SoundP p = other.gameObject.GetComponent<SoundP>();
-
-            if(color.Equals(p.color))
-            {
-                Destroy(other.gameObject);
-                Destroy(this.gameObject);
-            }
-        }
     }
 }
