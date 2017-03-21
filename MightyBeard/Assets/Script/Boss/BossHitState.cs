@@ -82,7 +82,7 @@ public class BossHitState : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if(darkCheck < 0)
+        if(darkCheck <= 0)
         {
             dm.setDark(false);
             darkCheck = darkThreshold;
@@ -165,4 +165,9 @@ public class BossHitState : MonoBehaviour {
 
 		}
 	}
+
+    public void setDarkMode()
+    {
+        darkCheck = -1;
+    }
 }

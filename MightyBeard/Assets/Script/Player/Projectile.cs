@@ -60,7 +60,10 @@ public class Projectile : MonoBehaviour {
             if(other.gameObject.tag.Equals("Boss"))
             {
                 BossHitState bhs = other.gameObject.GetComponent<BossHitState>();
-                bhs.decreaseHealth(damge);
+                BossColorStatus bcs = other.gameObject.GetComponent<BossColorStatus>();
+
+                if(bcs.color.Equals(Color))
+                    bhs.decreaseHealth(damge);
             }
             pp.deactiveObject(this.gameObject);
             this.transform.position = transform.parent.transform.position;

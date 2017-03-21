@@ -28,6 +28,9 @@ public class PlayerColorChange : MonoBehaviour {
         {
             ColorSprite.Add(sc.name, sc.sprite);
         }
+
+        SetSpriteColor("blue");
+        color = "blue";
 	}
 	
 	

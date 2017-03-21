@@ -18,6 +18,7 @@ public class player_gun : MonoBehaviour {
 
 		sR = GetComponent<SpriteRenderer> ();
 
+        sR.color = colorB;
 		//gun = transform.DOPunchPosition(hit, 0.2f, 5, 1f, false);
 	}
 	

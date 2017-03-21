@@ -11,9 +11,15 @@ public class Sound : MonoBehaviour {
 
     public string color;
 
+    private BossColorStatus bcs;
+    private BossHitState bhs;
+
     void Update()
     {
         transform.localScale += new Vector3(expandSpeed, expandSpeed, 0) * Time.deltaTime;
+
+        bcs = GameObject.FindGameObjectWithTag("Boss").GetComponent<BossColorStatus>();
+        bhs = GameObject.FindGameObjectWithTag("Boss").GetComponent<BossHitState>();
 
     }
 
@@ -44,6 +50,12 @@ public class Sound : MonoBehaviour {
 
             if(color.Equals(p.color))
             {
+                if(bcs.color.Equals("white"))
+                {
+                    bhs.setDarkMode();
+                }
+
+
                 Destroy(other.gameObject);
                 Destroy(this.gameObject);
             }
