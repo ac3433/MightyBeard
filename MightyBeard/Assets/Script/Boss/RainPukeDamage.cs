@@ -17,9 +17,9 @@ public class RainPukeDamage : MonoBehaviour {
         transform.Translate(Vector2.down * fallSpeed * Time.deltaTime);
 	}
 
-    void OnCollisionEnter2D (Collision2D other)
+    void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.collider.tag.Equals("Player"))
+        if (other.gameObject.tag.Equals("Player"))
         {
             PlayerStatus ps = other.gameObject.GetComponent<PlayerStatus>();
             ps.decreaseHealth(damage);

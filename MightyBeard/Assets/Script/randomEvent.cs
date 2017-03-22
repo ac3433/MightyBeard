@@ -6,39 +6,37 @@ public class randomEvent : MonoBehaviour {
 
 	[SerializeField] AudioSource drop;
 	public GameObject bomb;
-	private float rE;
-	private float AppearE;
-	Vector3 move;
-	Vector3 done;
+
+    public float bombRate = 5f;
+
+    private float timer;
 
 	void Start () {
 
 		//bomb = GetComponent<GameObject> ();
 		bomb.SetActive(false);
-		//gameObject.SetActive (false);
-		rE = Random.Range (0,4);
-		move = new Vector3(3f, 0f, 0f);
-		done = new Vector3 (66f, 0f, 0f);
+        //gameObject.SetActive (false);
+        timer = Time.time + bombRate;
 
 	}
 
 	void Update () {
 
-		AppearE = Random.Range (0,15);
-		transform.position += move;
+        if(Time.time > timer)
+        {
+            timer = Time.time + bombRate;
+            for (int i = 0; i <= 2; i++)
+            {
+                bomb.SetActive(true);
+                GameObject obj = (GameObject)Instantiate(bomb, transform.position, Quaternion.identity);
+                Destroy(obj, 5f);
+                drop.Play();
+            }
+        }
 
-		if(rE == AppearE && bomb != null){
 
-			for (int i = 0; i<= 2; i++ ){
-				
-				bomb.SetActive(true);
-				Instantiate(bomb, transform.position, Quaternion.identity);
-				drop.Play ();
-			}
-				
-				Destroy(gameObject, 2f);
 
-		}
+		
 	
 	}
 

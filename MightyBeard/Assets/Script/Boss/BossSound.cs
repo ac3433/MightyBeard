@@ -54,29 +54,11 @@ public class BossSound : MonoBehaviour {
         if (Time.time > timer)
         {
             timer = Time.time + UnityEngine.Random.Range(minRate, maxRate);
-            if(bhs.health < 25)
-            {
-                spawner();
-                spawner();
-                spawner();
-            }
-            else if(bhs.health < 50)
-            {
-                spawner();
-                spawner();
-                
-            }
-            else
                 Produce1();
-
         }
 	}
 
-    IEnumerator spawner()
-    {
-        Produce1();
-        yield return new WaitForSeconds(1);
-    }
+
 
     void Produce1()
     {

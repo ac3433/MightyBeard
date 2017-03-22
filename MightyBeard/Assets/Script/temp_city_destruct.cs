@@ -2,41 +2,97 @@
 using System.Collections;
 using DG.Tweening;
 
-public class temp_city_destruct : MonoBehaviour {
+public class temp_city_destruct : MonoBehaviour
+{
 
-	Tween attack;
-	Tween ScreenShakeTween;
-	Sequence flashseq;
-	Color defaultCamColor;
+    Tween attack;
+    Tween ScreenShakeTween;
+    Sequence flashseq;
+    Color defaultCamColor;
 
-	[SerializeField] AudioSource destruct;
-	// Use this for initialization
+    private int colorRan1;
+    private int numChoose;
+    private int colorRan2;
+    private int colorRan3;
+    private int colorRan4;
+    private Color cor;
+    private SpriteRenderer ren;
+    [SerializeField]
+    AudioSource destruct;
+    // Use this for initialization
 
-	void Start(){
+    void Start()
+    {
 
-		defaultCamColor = Camera.main.backgroundColor;
-	}
+        defaultCamColor = Camera.main.backgroundColor;
 
-	void OnCollisionEnter2D (Collision2D boom){
+        ren = GetComponent<SpriteRenderer>();
 
-		if(boom.collider.tag == "Bomb"){
 
-			destruct.Play ();
-			if (attack != null && attack.IsPlaying ()) {
+    }
 
-				attack.Complete ();
+    void Update()
+    {
 
-			}
-			attack = transform.DOShakePosition (5f);
+        colorRan1 = Random.Range(0, 24);
+        colorRan2 = Random.Range(0, 24);
+        colorRan3 = Random.Range(0, 24);
+        colorRan4 = Random.Range(0, 24);
+        numChoose = Random.Range(0, 24);
 
-			if (flashseq != null && flashseq.IsPlaying ()) {
+        if (colorRan1 == numChoose)
+        {
 
-				flashseq.Complete ();
-			}
+            ren.color = Color.red;
 
-			flashseq = DOTween.Sequence ().Append (Camera.main.DOColor (Color.magenta, 0.1f)).Append (Camera.main.DOColor (defaultCamColor, 0.1f));
+        }
 
-		}
+        if (colorRan2 == numChoose)
+        {
 
-	}
+            ren.color = Color.green;
+
+        }
+
+        if (colorRan3 == numChoose)
+        {
+
+            ren.color = Color.yellow;
+
+        }
+
+        if (colorRan4 == numChoose)
+        {
+
+            ren.color = Color.blue;
+
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D boom)
+    {
+
+        if (boom.collider.tag == "Bomb")
+        {
+
+            destruct.Play();
+            if (attack != null && attack.IsPlaying())
+            {
+
+                attack.Complete();
+
+            }
+            attack = transform.DOShakePosition(5f);
+
+            if (flashseq != null && flashseq.IsPlaying())
+            {
+
+                flashseq.Complete();
+            }
+
+            flashseq = DOTween.Sequence().Append(Camera.main.DOColor(Color.magenta, 0.1f)).Append(Camera.main.DOColor(defaultCamColor, 0.1f));
+
+        }
+
+    }
 }
